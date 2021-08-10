@@ -1,0 +1,54 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+
+
+#
+# Complete the 'converteTemperatura' function below.
+#
+# The function is expected to return a FLOAT.
+# The function accepts following parameters:
+#  1. FLOAT temperatura
+#  2. STRING escalaOrigem
+#  3. STRING escalaDesejada
+#
+
+def converteTemperatura(temperatura, escalaOrigem, escalaDesejada):
+    # Write your code here
+   
+    
+    if escalaOrigem == 'celsius' and escalaDesejada == 'fahrenheit':
+        temperatura = (temperatura*1.8)+32
+    elif escalaOrigem == 'fahrenheit' and escalaDesejada == 'celsius':
+        temperatura = (temperatura-32)/1.8
+    elif escalaOrigem == 'celsius' and escalaDesejada == 'kelvin':
+        temperatura = temperatura+273.15
+    elif escalaOrigem == 'kelvin' and escalaDesejada == 'celsius':
+        temperatura = temperatura-273.15
+    elif escalaOrigem == 'kelvin' and escalaDesejada == 'fahrenheit':
+        temperatura = ((temperatura-273.15)*1.8)+32
+    else :
+        temperatura = ((temperatura-32)/1.8)+273.15
+    
+    return temperatura
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    temperatura = float(input().strip())
+
+    escalaOrigem = input()
+
+    escalaDesejada = input()
+
+    result = converteTemperatura(temperatura, escalaOrigem, escalaDesejada)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
+
